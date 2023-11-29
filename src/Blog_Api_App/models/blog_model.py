@@ -5,6 +5,6 @@ class Blog(models.Model):
     author = models.CharField(max_length=100)
     content = models.CharField(max_length=1000)
     date = models.DateTimeField(auto_now_add=True)
-    
+
     def __str__(self):
         return self.title
