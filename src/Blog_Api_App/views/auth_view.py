@@ -33,10 +33,10 @@ def login_user(request):
         
         refresh = RefreshToken.for_user(user)
 
-        return {
+        return Response({
             'refresh': str(refresh),
             'access': str(refresh.access_token),
-        }
+        })
         
         
     return Response(serializer.errors, status=400)
