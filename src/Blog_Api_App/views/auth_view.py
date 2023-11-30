@@ -18,13 +18,12 @@ def register_user(request):
 
     
 @api_view(['POST'])
-@authentication_classes([TokenAuthentication])
+# @authentication_classes([TokenAuthentication])
 @permission_classes([AllowAny])
 def login_user(request):
     username = request.data.get('username')
     password = request.data.get('password')
 
-    # Authenticate the user
     user = authenticate(username=username, password=password)
 
     if user:
@@ -32,3 +31,9 @@ def login_user(request):
         return Response({'token': token.key}, status=200)
     else:
         return Response({'error': 'Invalid credentials'}, status=400)
+
+# {
+# "username" : "Ashish" , 
+# "email" : "ashish@email.com",
+# "password" : "ash123"
+# }
