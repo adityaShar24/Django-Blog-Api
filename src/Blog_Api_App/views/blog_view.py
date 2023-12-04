@@ -15,7 +15,10 @@ def post_blog(request):
         return Response(serializer.data, status=201)
     return Response(serializer.errors, status=400)
 
+
 @api_view(['GET'])
+@authentication_classes([SessionAuthentication])
+@permission_classes([IsAuthenticated])
 def get_all_blogs(request):
     blogs = Blog.objects.all()
     serializer = BlogSerializer(blogs, many=True)
