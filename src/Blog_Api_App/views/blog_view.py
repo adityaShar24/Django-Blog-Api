@@ -12,7 +12,6 @@ def post_blog(request):
         return Response(serializer.data, status=201)
     return Response(serializer.errors, status=400)
 
-
 @api_view(['GET'])
 def get_all_blogs(request):
     blogs = Blog.objects.all()

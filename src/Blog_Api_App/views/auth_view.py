@@ -11,7 +11,9 @@ from rest_framework_simplejwt.tokens import RefreshToken
 def register_user(request):
     serializer = UserSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
-        serializer.save()
+        user = serializer.save()
+        user.set_password(serializer.validated_data['password'])
+        user.save()
         return Response(serializer.data, status=201)
     return Response(serializer.errors, status=400)
 
