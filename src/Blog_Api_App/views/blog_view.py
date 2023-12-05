@@ -9,6 +9,8 @@ from ..models import Blog
 @authentication_classes([TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def post_blog(request):
+    print(request.headers)  # Inspect headers
+    print(request.user)
     serializer = BlogSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
         serializer.save()
