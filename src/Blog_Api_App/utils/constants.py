@@ -7,3 +7,4 @@ INVAID_CREDENTIALS_MESSAGE = "Invalid username or password"
 
 BLOG_POST_SUCCESS_MESSAGE = "blog has been posted successfully"
 ALL_BLOGS_FETCHED_MESSAGE = 'All blogs has been fethed successfully'
+UPDATED_BLOG_SUCCESSFULLY = 'blog has been updated successfully'
