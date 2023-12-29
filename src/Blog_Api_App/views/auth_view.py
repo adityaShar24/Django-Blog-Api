@@ -57,3 +57,9 @@ def login_user(request):
                 'access': str(access)
             }
         )
+        
+    else:
+        response = Response( serializer.errors , status= HTTP_400_BAD_REQUEST)
+        
+    return response 
+    
