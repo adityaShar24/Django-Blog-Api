@@ -28,7 +28,7 @@ All Serializers are utilized for data validation and serialization, promoting co
 
 1. **Clone the Repository:**
    ```shell
-   [git clone https://github.com/adityaShar24/](https://github.com/adityaShar24/Django-Blog-Api.git
+   git clone https://github.com/adityaShar24/](https://github.com/adityaShar24/Django-Blog-Api.git
 
 2. **Navigate to the project directory:**
    ```shell
