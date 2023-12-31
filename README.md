@@ -1,1 +1,86 @@
 # Django-Blog-Api
+
+## 🎯Features 
+
+- **Token-Based Authentication:** Users receive and use unique tokens to securely access and authenticate with API endpoints..
+
+- **Authorization:** All types of requests are authorized to ensure only authenticated users can access the services.
+
+-  **Blog Mangement** The Blog Management API provides endpoints for creating, updating, and listing blogs. Authenticated users can create and modify blogs using the `POST` and `PUT` requests, respectively, while the `GET` endpoint allows them to retrieve a list of all blog or detailed information about a specific blog using its primary key (`pk`).
+
+- **User Management:** The User Authentication API facilitates user registration and login functionalities. Users can register by sending a `POST` request to the registration endpoint, log in using valid credentials through the login endpoint. JSON Web Tokens (JWT) are used for secure authentication and authorization.
+
+- **Note:** Note:
+All endpoints are decorated with @api_view(["POST"]) and @permission_classes([IsAuthenticated]) to ensure authentication and the use of proper HTTP methods.
+HTTP status codes are appropriately used to indicate the outcome of each operation (e.g., HTTP_201_CREATED for successful creations, HTTP_400_BAD_REQUEST for validation errors).
+Proper naming conventions and modularization have been applied to keep the code organized and readable.
+All Serializers are utilized for data validation and serialization, promoting code reusability and maintaining consistency.
+
+
+## 🚀Technologies Used 
+
+- **Django 5.0**: A high-level Python web framework.
+- **Django Rest Framework (DRF)**: A powerful and flexible toolkit for building Web APIs.
+- **PostgreSQL:** An open-source relational database management system (RDBMS) known for its reliability and advanced features.
+- **Token-based Authentication using `rest_framework_simplejwt`**: Token-based authentication for securing API endpoints.
+
+## Getting Started 🛠️
+
+1. **Clone the Repository:**
+   ```shell
+   [git clone https://github.com/adityaShar24/](https://github.com/adityaShar24/Django-Blog-Api.git
+
+2. **Navigate to the project directory:**
+   ```shell
+    cd src
+
+2. **Create and activate a virtual environment (optional but recommended)**
+   ```shell
+    python -m venv venv
+    source venv/bin/activate  
+    On Windows, use `venv\Scripts\activate`
+
+
+2. **Install project Dependencies:** 
+    ```shell
+    pip install -r requirements.txt
+ 
+
+3. **Apply Database Migrations (Step1):** 
+    ```shell
+    python manage.py makemigrations
+
+4. **Apply Database Migrations (Step2):** 
+    ```shell
+    python manage.py migrate
+
+5. **Create Superuser:** 
+    ```shell
+    python manage.py createsuperuser
+    username: admin
+    password: admin   
+
+5. **Run Development Server:** 
+    ```shell
+    python manage.py runserver    
+
+
+## Contributing 🤝
+
+Feel free to contribute to enhance the functionality of Django-Blog-Api . Follow the [contribution guidelines](CONTRIBUTING.md) for more details.
+
+## License 📄
+
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/adityaShar24/Django-Blog-Api/blob/main/LICENSE) file for details.
+
+## Acknowledgments 🙏
+
+Special thanks to the Django community and contributors for making this project possible.
+
+Happy task managing! 😊
+
+
+
+
+
+
