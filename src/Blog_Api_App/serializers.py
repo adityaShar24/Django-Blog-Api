@@ -1,10 +1,10 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models.blog_model import Blog
+from .models.blog_model import Blogs
 
 class BlogSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Blog
+        model = Blogs
         fields = ['title', 'content', 'author', 'date']
         
 class UserSerializer(serializers.ModelSerializer):

@@ -1,4 +1,4 @@
-from .blog_model import Blog
+from .blog_model import Blogs
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -7,7 +7,7 @@ class Comment(models.Model):
     
     parent_comment = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE, default=None , related_name = 'child_comments')
     
-    blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
+    blog = models.ForeignKey(Blogs, on_delete=models.CASCADE)
     
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     

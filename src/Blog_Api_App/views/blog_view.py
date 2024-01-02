@@ -4,7 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.status import HTTP_201_CREATED , HTTP_400_BAD_REQUEST , HTTP_200_OK 
 from ..serializers import BlogSerializer
-from ..models import Blog
+from ..models import Blogs
 from ..utils.constants import BLOG_POST_SUCCESS_MESSAGE , ALL_BLOGS_FETCHED_MESSAGE , UPDATED_BLOG_SUCCESSFULLY , PERMISSION_DENIED_MESSAGE
 
 @api_view(['POST'])
@@ -44,7 +44,7 @@ def update_blog(request , pk):
 
     response = None
     
-    blog = Blog.objects.get(id = pk)
+    blog = Blogs.objects.get(id = pk)
     serializer = BlogSerializer(instance=blog , data = request.data)
     
     if serializer.is_valid():
@@ -71,7 +71,7 @@ def get_all_blogs(request):
     
     response = None
     
-    blogs = Blog.objects.filter(user = request.user.id)
+    blogs = Blogs.objects.filter(user = request.user.id)
     
     serializer = BlogSerializer(instnance = blogs , many= True)   
     
@@ -90,11 +90,11 @@ def get_by_id(request, pk):
     
     response = None
     
-    blog = Blog.objects.get(id = pk)
+    blog = Blogs.objects.get(id = pk)
     
-    print(blog.user.id)
+    print(Blogs.user.id)
     
-    if blog.user.id != request.user.id:
+    if Blogs.user.id != request.user.id:
         response = {
                 "message": PERMISSION_DENIED_MESSAGE
             }
