@@ -1,7 +1,8 @@
 from django.contrib.auth import authenticate
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from ..serializers import UserSerializer , LoginSerializer
+from ..serializers.login_serializer import LoginSerializer
+from ..serializers.user_serializer import UserSerializer
 from rest_framework_simplejwt.tokens import RefreshToken , AccessToken
 from ..utils.constants import USER_REGISTERED_MESSAGE , USER_LOGGEDIN_MESSAGE , INVAID_CREDENTIALS_MESSAGE
 from rest_framework.status import HTTP_201_CREATED , HTTP_400_BAD_REQUEST
