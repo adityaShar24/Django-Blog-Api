@@ -10,7 +10,7 @@ class Blogs(models.Model):
     
     date = models.DateTimeField(auto_now_add=True)
     
-    user = models.ForeignKey(User , null=True , blank = True , on_delete=models.CASCADE, default=None )
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
     
     def __str__(self):
         return self.title
