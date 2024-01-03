@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.status import HTTP_201_CREATED , HTTP_400_BAD_REQUEST , HTTP_200_OK 
-from ..serializers import BlogSerializer
+from ..serializers.blog_serializer import BlogSerializer
 from ..models import Blogs
 from ..utils.constants import BLOG_POST_SUCCESS_MESSAGE , ALL_BLOGS_FETCHED_MESSAGE , UPDATED_BLOG_SUCCESSFULLY , PERMISSION_DENIED_MESSAGE
 
