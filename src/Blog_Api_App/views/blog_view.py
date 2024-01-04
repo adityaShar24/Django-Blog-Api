@@ -21,7 +21,7 @@ def post_blog(request):
     }
     
     serializer = BlogSerializer(data= data)
-    
+        
     if serializer.is_valid():
         serializer.save()
         
