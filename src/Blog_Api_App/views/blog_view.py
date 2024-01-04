@@ -22,7 +22,7 @@ def post_blog(request):
     
     serializer = BlogSerializer(data= data)
     
-    if serializer.is_valid(raise_exception=True):
+    if serializer.is_valid():
         serializer.save()
         
         response_data = {
@@ -73,7 +73,7 @@ def get_all_blogs(request):
     
     blogs = Blogs.objects.filter(user = request.user.id)
     
-    serializer = BlogSerializer(instnance = blogs , many= True)   
+    serializer = BlogSerializer(instance = blogs , many= True)   
     
     response_data = {
         "message": ALL_BLOGS_FETCHED_MESSAGE,
