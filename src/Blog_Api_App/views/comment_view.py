@@ -7,7 +7,7 @@ from ..utils.constants import COMMENT_SUCCESS_MESSAGE
 
 @api_view(['POST'])
 @authentication_classes([JWTAuthentication])
-def comment(request):
+def create_comment(request):
     
     response = None
     
