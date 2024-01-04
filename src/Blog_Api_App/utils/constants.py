@@ -11,3 +11,4 @@ ALL_BLOGS_FETCHED_MESSAGE = 'All blogs has been fethed successfully'
 UPDATED_BLOG_SUCCESSFULLY = 'blog has been updated successfully'
 
 COMMENT_SUCCESS_MESSAGE = "comment sent successfully!"
+COMMENT_UPDATED_MESSAGE = "comment updated successfully!"
