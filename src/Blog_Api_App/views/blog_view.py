@@ -2,39 +2,45 @@ from rest_framework.decorators import api_view, permission_classes , authenticat
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework.status import HTTP_201_CREATED , HTTP_400_BAD_REQUEST , HTTP_200_OK 
+from rest_framework.status import HTTP_201_CREATED , HTTP_400_BAD_REQUEST , HTTP_200_OK , HTTP_401_UNAUTHORIZED
 from ..serializers.blog_serializer import BlogSerializer
 from ..models import Blogs
 from ..utils.constants import BLOG_POST_SUCCESS_MESSAGE , ALL_BLOGS_FETCHED_MESSAGE , UPDATED_BLOG_SUCCESSFULLY , PERMISSION_DENIED_MESSAGE
 
 @api_view(['POST'])
 @authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
 def post_blog(request):
     
     response = None
         
-    data = {
-        "title": request.data.get("title"),
-        "author": request.data.get("author"),
-        "content": request.data.get("content"),
-        "user": request.user.id
-    }
+        
+    response = None
     
-    serializer = BlogSerializer(data= data)
-        
-    if serializer.is_valid():
-        serializer.save()
-        
-        response_data = {
-            "message": BLOG_POST_SUCCESS_MESSAGE,
-            "data": serializer.data
+    if request.user.is_authenticated:
+        data = {
+            "title": request.data.get("title"),
+            "author": request.data.get("author"),
+            "content": request.data.get("content"),
+            "user": request.user.id
         }
-        
-        response = Response(response_data , status= HTTP_201_CREATED)
-    
+
+        serializer = BlogSerializer(data=data)
+
+        if serializer.is_valid():
+            serializer.save()
+
+            response_data = {
+                "message": BLOG_POST_SUCCESS_MESSAGE,
+                "data": serializer.data
+            }
+
+            response = Response(response_data, status=HTTP_201_CREATED)
+        else:
+            response = Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
     else:
-        response = Response(serializer.errors , status=HTTP_400_BAD_REQUEST)
-        
+        response = Response({"message": "User not authenticated"}, status=HTTP_401_UNAUTHORIZED)
+
     return response
 
 
@@ -46,6 +52,11 @@ def update_blog(request , pk):
     
     blog = Blogs.objects.get(id = pk)
     serializer = BlogSerializer(instance=blog , data = request.data)
+    
+    if blog.user.id != request.user.id:
+        response_data = {
+            "message": PERMISSION_DENIED_MESSAGE
+        }
     
     if serializer.is_valid():
         serializer.save()

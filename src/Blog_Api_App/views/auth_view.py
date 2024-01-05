@@ -40,8 +40,8 @@ def login_user(request):
     serializer = LoginSerializer(data = request.data)
     
     if serializer.is_valid():
-        password = serializer.data['password']
         username = serializer.data['username']
+        password = serializer.data['password']
         
         user = authenticate( request, username= username , password = password )
         
