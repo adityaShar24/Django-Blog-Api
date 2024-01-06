@@ -13,10 +13,7 @@ from ..utils.constants import BLOG_POST_SUCCESS_MESSAGE , ALL_BLOGS_FETCHED_MESS
 def post_blog(request):
     
     response = None
-        
-        
-    response = None
-    
+            
     if request.user.is_authenticated:
         data = {
             "title": request.data.get("title"),
@@ -57,8 +54,9 @@ def update_blog(request , pk):
         response_data = {
             "message": PERMISSION_DENIED_MESSAGE
         }
-    
-    if serializer.is_valid():
+        response = Response(response_data , status= HTTP_401_UNAUTHORIZED)
+        
+    elif serializer.is_valid():
         serializer.save()
         
         response_data = {
@@ -67,7 +65,6 @@ def update_blog(request , pk):
         }
         
         response = Response(response_data , status= HTTP_201_CREATED)
-    
     else:
         response = Response(serializer.errors , status= HTTP_400_BAD_REQUEST)
         
@@ -82,7 +79,7 @@ def get_all_blogs(request):
     
     response = None
     
-    blogs = Blogs.objects.filter(user = request.user.id)
+    blogs = Blogs.objects.all()
     
     serializer = BlogSerializer(instance = blogs , many= True)   
     
